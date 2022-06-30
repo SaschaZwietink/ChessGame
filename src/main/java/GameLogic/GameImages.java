@@ -15,18 +15,18 @@ public class GameImages {
             imageQueenB, imageQueenW, imageKingB, imageKingW, imagePawnB, imagePawnW;
 
     public void initializeImages(){
-        imageBishopB = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_bdt60.png");
-        imageBishopW = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_blt60.png");
-        imageKnightB = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_ndt60.png");
-        imageKnightW = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_nlt60.png");
-        imageRookB = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_rdt60.png");
-        imageRookW = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_rlt60.png");
-        imageQueenB = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_qdt60.png");
-        imageQueenW = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_qlt60.png");
-        imageKingB = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_kdt60.png");
-        imageKingW = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_klt60.png");
-        imagePawnB = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_pdt60.png");
-        imagePawnW = new ImageIcon("C:\\Users\\sasch\\OneDrive\\Desktop\\PriveProject2j\\src\\main\\resources\\Chess_plt60.png");
+        imageBishopB = new ImageIcon("src/main/java/resources/Chess_bdt60.png");
+        imageBishopW = new ImageIcon("src/main/java/resources/Chess_blt60.png");
+        imageKnightB = new ImageIcon("src/main/java/resources/Chess_ndt60.png");
+        imageKnightW = new ImageIcon("src/main/java/resources/Chess_nlt60.png");
+        imageRookB = new ImageIcon("src/main/java/resources/Chess_rdt60.png");
+        imageRookW = new ImageIcon("src/main/java/resources/Chess_rlt60.png");
+        imageQueenB = new ImageIcon("src/main/java/resources/Chess_qdt60.png");
+        imageQueenW = new ImageIcon("src/main/java/resources/Chess_qlt60.png");
+        imageKingB = new ImageIcon("src/main/java/resources/Chess_kdt60.png");
+        imageKingW = new ImageIcon("src/main/java/resources/Chess_klt60.png");
+        imagePawnB = new ImageIcon("src/main/java/resources/Chess_pdt60.png");
+        imagePawnW = new ImageIcon("src/main/java/resources/Chess_plt60.png");
     }
 
     public ImageIcon loadImages(Piece piece){
