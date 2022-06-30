@@ -8,7 +8,8 @@ public class RookPiece extends Piece{
         super(isWhite);
     }
 
-    //TODO Check for only horizontal movement
+    //TODO Kill a piece
+    //TODO castling
     @Override
     public boolean canMove(GameBoard gameBoard, Location start, Location end) {
         if(end.getPiece() != null) {

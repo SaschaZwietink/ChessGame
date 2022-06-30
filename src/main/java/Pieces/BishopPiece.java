@@ -8,7 +8,7 @@ public class BishopPiece extends Piece{
         super(isWhite);
     }
 
-    //TODO check for diagonal movement
+    //TODO killing
     @Override
     public boolean canMove(GameBoard gameBoard, Location start, Location end) {
         boolean canBeAKill = false;
@@ -31,7 +31,7 @@ public class BishopPiece extends Piece{
         int xe = end.getX()-(end.getX()-start.getX())/x;
         int ye = end.getY()-(end.getY()-start.getY())/y;
 
-        Location tempEnd = new Location(xe,ye,null);
+        Location tempEnd = new Location(xe,ye,gameBoard.getLocation(xe,ye).getPiece());
         return canMove(gameBoard,start,tempEnd);
     }
 

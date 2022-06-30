@@ -14,7 +14,6 @@ public class Game {
     private final GameBoard gameBoard;
     private Player currentTurn;
     private List<Move> movesPlayed;
-    private final int MAX_PLAYERS = 2;
 
     public Game(Player p1, Player p2, GameBoard gameBoard) {
         this.gameBoard = gameBoard;
@@ -35,7 +34,6 @@ public class Game {
      * @param newMove a move with start location, end location and a player
      */
     public void playMove(Move newMove){
-        System.out.println(newMove.getEnd().getX() + " " + newMove.getEnd().getY());
         if(movePossible(newMove)) {
             Piece pieceMoving = newMove.getStart().getPiece();
             int startX = newMove.getStart().getX();
@@ -43,7 +41,7 @@ public class Game {
             int endX = newMove.getEnd().getX();
             int endY = newMove.getEnd().getY();
 
-            System.out.println(endX + " " + endY);
+            System.out.println("(" + startX + "," + startY + ") -> (" + endX + "," + endY + ")");
             newMove.getStart().setPiece(null);
             newMove.getEnd().setPiece(pieceMoving);
 

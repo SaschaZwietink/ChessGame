@@ -11,6 +11,9 @@ public class QueenPiece extends Piece {
         super(isWhite);
     }
 
+    //TODO diagonal movement
+    //TODO horizontal movement
+    //TODO killing
     @Override
     public boolean canMove(GameBoard gameBoard, Location start, Location end) {
         if(end.getPiece().isWhite() == this.isWhite()) {

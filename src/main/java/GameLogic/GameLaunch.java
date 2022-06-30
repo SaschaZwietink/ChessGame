@@ -11,15 +11,15 @@ public class GameLaunch {
 
     public void launch(){
         gameBoard = new GameBoard();
-        Human p1 = new Human(true,"player1");
-        Human p2 = new Human(false,"player2");
+        Human p1 = new Human(true,"White");
+        Human p2 = new Human(false,"Black");
 
         game = new Game(p1,p2,gameBoard);
 
 
         System.out.println("Start of game");
         gameBoard.initializeBoard();
-        gameBoard.printBoard();
+        //gameBoard.printBoard();
 
 //        simulateTurn(7,2,2,7,p1);
 //        simulateTurn(1,2,2,2,p2);

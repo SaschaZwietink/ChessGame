@@ -10,7 +10,9 @@ public class PawnPiece extends Piece{
         super(isWhite);
     }
 
-    //TODO check for one step forward movement or for diagonal attack
+    //TODO add not going backwards
+    //TODO add promotion to Queen,Rook, Bishop or Knight
+    //TODO add En Passant
     @Override
     public boolean canMove(GameBoard gameBoard, Location start, Location end) {
         //TODO this part is same for every piece

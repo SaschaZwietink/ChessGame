@@ -9,7 +9,7 @@ public class KnightPiece extends Piece {
         super(isWhite);
     }
 
-    //TODO check for correct movement
+    //TODO add killing a piece
     @Override
     public boolean canMove(GameBoard gameBoard, Location start, Location end) {
         if(end.getPiece() != null) {

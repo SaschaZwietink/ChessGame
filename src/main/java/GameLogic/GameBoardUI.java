@@ -10,8 +10,8 @@ public class GameBoardUI implements ActionListener {
     private final JFrame gameFrame;
     private final JButton[][] chessBoardSquares = new JButton[8][8];
     private final GameImages images;
-    private JLabel playersTurnLabel, messagesLabel;
-    private JPanel playersTurnPanel, messagesPanel, gamePanel, topLayerPanel;
+    private final JLabel playersTurnLabel, messagesLabel;
+    private final JPanel playersTurnPanel, messagesPanel, gamePanel, topLayerPanel;
 
     private boolean pieceSelected = false;
     private JButton selected = null;
@@ -144,7 +144,7 @@ public class GameBoardUI implements ActionListener {
                 //TODO selecting same piece twice
                 game.playMove(new Move(game.getCurrentTurn(), start, end));
                 //TODO not most efficient
-                playersTurnLabel.setText("Its " + game.getCurrentTurn().getName() + " turn");
+                playersTurnLabel.setText("Its " + game.getCurrentTurn().getName() + "'s turn");
                 setBoardPieces(gameBoard.getLocations());
             }
         }

@@ -10,6 +10,11 @@ public class KingPiece extends Piece {
         super(isWhite);
     }
 
+    //TODO movement
+    //TODO check underAttack
+    //TODO check checkmate
+    //TODO killing a piece
+    //TODO checking if new spot is not checked
     @Override
     public boolean canMove(GameBoard gameBoard, Location start, Location end) {
         if(end.getPiece().isWhite() == this.isWhite()) {
