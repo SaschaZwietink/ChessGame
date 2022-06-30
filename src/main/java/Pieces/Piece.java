@@ -31,4 +31,22 @@ public abstract class Piece {
 
     public abstract String getName();
 
+    public abstract boolean getSpecial();
+
+    /**
+     * this method checks if the location is empty, occupied by own color or opposite color
+     * @return 0 if empty, 1 if own color or 2 if opposite color
+     */
+    public int locationEmpty(Location end){
+        if(end.getPiece() != null) {
+            if (end.getPiece().isWhite() == this.isWhite()) {
+                return 1;
+            }else{
+                return 2;
+            }
+        }
+        return 0;
+    }
+
+
 }

@@ -35,4 +35,9 @@ public class RookPiece extends Piece{
     public String getName() {
         return "R";
     }
+
+    @Override
+    public boolean getSpecial() {
+        return false;
+    }
 }

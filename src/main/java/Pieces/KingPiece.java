@@ -37,6 +37,11 @@ public class KingPiece extends Piece {
         return "K";
     }
 
+    @Override
+    public boolean getSpecial() {
+        return false;
+    }
+
     //TODO create underAttack method
     private boolean underAttack(int x, int y) {
         return false;

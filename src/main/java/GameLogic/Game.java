@@ -1,6 +1,6 @@
 package main.java.GameLogic;
 
-import main.java.Pieces.Piece;
+import main.java.Pieces.*;
 import main.java.Players.Player;
 
 import java.util.LinkedList;
@@ -13,7 +13,8 @@ public class Game {
     private final List<Player> players;
     private final GameBoard gameBoard;
     private Player currentTurn;
-    private List<Move> movesPlayed;
+    private final List<Move> movesPlayed;
+    private Piece finalPromPiece = null;
 
     public Game(Player p1, Player p2, GameBoard gameBoard) {
         this.gameBoard = gameBoard;
@@ -41,7 +42,7 @@ public class Game {
             int endX = newMove.getEnd().getX();
             int endY = newMove.getEnd().getY();
 
-            System.out.println("(" + startX + "," + startY + ") -> (" + endX + "," + endY + ")");
+            System.out.println(pieceMoving.getName() + ": (" + startX + "," + startY + ") -> (" + endX + "," + endY + ")");
             newMove.getStart().setPiece(null);
             newMove.getEnd().setPiece(pieceMoving);
 
@@ -51,6 +52,36 @@ public class Game {
             tempLocations[endX][endY] = new Location(startX, startY, pieceMoving);
             gameBoard.setLocations(tempLocations);
 
+
+            //TODO game needs to wait for choose to be made
+            if(pieceMoving.getName().equals("P")&&pieceMoving.getSpecial()){
+                Thread pawnPromotionThread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("Hello");
+                        PawnPromotion pawnPromotion = new PawnPromotion();
+                        Piece promPiece = null;
+                        switch (pawnPromotion.getFinalChoose()){
+                            case 0 -> promPiece = new QueenPiece(pieceMoving.isWhite());
+                            case 1 -> promPiece = new BishopPiece(pieceMoving.isWhite());
+                            case 2 -> promPiece = new RookPiece(pieceMoving.isWhite());
+                            case 3 -> promPiece = new KnightPiece(pieceMoving.isWhite());
+                        }
+                        setFinalPromPiece(promPiece);
+                        Thread.currentThread().interrupt();
+                    }
+                });
+
+                pawnPromotionThread.start();
+                try {
+                    Thread.currentThread().join();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                System.out.println(pieceMoving.getName());
+                gameBoard.getLocation(endX,endY).setPiece(finalPromPiece);
+            }
             movesPlayed.add(newMove);
             nextTurn();
         }else{
@@ -88,6 +119,11 @@ public class Game {
     public Player getCurrentTurn() {
         return currentTurn;
     }
+
+    private void setFinalPromPiece(Piece promPiece){
+        this.finalPromPiece = promPiece;
+    }
+
 
 
 }

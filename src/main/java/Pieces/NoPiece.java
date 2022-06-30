@@ -17,4 +17,9 @@ public class NoPiece extends Piece{
     public String getName() {
         return "X";
     }
+
+    @Override
+    public boolean getSpecial() {
+        return false;
+    }
 }

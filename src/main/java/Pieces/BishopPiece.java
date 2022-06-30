@@ -39,4 +39,9 @@ public class BishopPiece extends Piece{
     public String getName() {
         return "B";
     }
+
+    @Override
+    public boolean getSpecial() {
+        return false;
+    }
 }

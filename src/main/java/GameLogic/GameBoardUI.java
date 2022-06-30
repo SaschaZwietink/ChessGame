@@ -41,7 +41,7 @@ public class GameBoardUI implements ActionListener {
         gameFrame = new JFrame("Chess Game");
         gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         gameFrame.setLayout(new BorderLayout());
-        gameFrame.setSize(new Dimension(800,800));
+        gameFrame.setSize(800,800);
 
         topLayerPanel = new JPanel(new GridLayout(0,2));
         topLayerPanel.add(playersTurnPanel);
@@ -131,10 +131,12 @@ public class GameBoardUI implements ActionListener {
 
         if(tempLocation!=null) {
             if (!pieceSelected) {
-                if (tempLocation.getPiece().isWhite() == game.getCurrentTurn().isWhiteSide()) {
-                    pieceSelected = true;
-                    start = tempLocation;
-                    selected.setBackground(Color.GREEN);
+                if(tempLocation.getPiece()!=null) {
+                    if (tempLocation.getPiece().isWhite() == game.getCurrentTurn().isWhiteSide()) {
+                        pieceSelected = true;
+                        start = tempLocation;
+                        selected.setBackground(Color.GREEN);
+                    }
                 }
             } else {
                 pieceSelected = false;

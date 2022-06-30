@@ -30,4 +30,9 @@ public class KnightPiece extends Piece {
     public String getName() {
         return "H";
     }
+
+    @Override
+    public boolean getSpecial() {
+        return false;
+    }
 }

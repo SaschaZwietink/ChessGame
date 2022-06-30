@@ -30,4 +30,9 @@ public class QueenPiece extends Piece {
     public String getName() {
         return "Q";
     }
+
+    @Override
+    public boolean getSpecial() {
+        return false;
+    }
 }
