@@ -19,9 +19,9 @@ public class GameBoardUI implements ActionListener {
     private final GameBoard gameBoard;
     private final Game game;
 
-    public GameBoardUI(GameBoard gameBoard, Game game){
-        this.gameBoard = gameBoard;
-        this.game = game;
+    public GameBoardUI(GameLaunch gameLaunch){
+        this.gameBoard = gameLaunch.getGameBoard();
+        this.game = gameLaunch.getGame();
 
 
         images = new GameImages();
@@ -56,26 +56,31 @@ public class GameBoardUI implements ActionListener {
     public void initializeBoardUI(){
         Insets buttonMargin = new Insets(0,0,0,0);
 
-        for (int xb = 0; xb < chessBoardSquares.length; xb++) {
-            gamePanel.add(new JLabel("" + (chessBoardSquares.length-xb),SwingConstants.CENTER));
-            for (int yb = 0; yb < chessBoardSquares[xb].length; yb++) {
+        //Making the chessBoard
+        for (int buttonRow = 0; buttonRow < chessBoardSquares.length; buttonRow++) {
+            //Adding the number on the left side
+            gamePanel.add(new JLabel("" + (chessBoardSquares.length-buttonRow),SwingConstants.CENTER));
+            //adding a row of squares
+            for (int buttonColumn = 0; buttonColumn < chessBoardSquares[buttonRow].length; buttonColumn++) {
+
                 ImageIcon icon = new ImageIcon(new BufferedImage(60, 60, BufferedImage.TYPE_INT_ARGB));
                 JButton tempButton = new JButton(icon);
 
                 tempButton.setMargin(buttonMargin);
 
-                setColor(xb,yb,tempButton);
+                setColor(buttonRow,buttonColumn,tempButton);
+
                 tempButton.setFocusable(false);
                 tempButton.addActionListener(this);
 
-                chessBoardSquares[xb][yb] = tempButton;
-                gamePanel.add(chessBoardSquares[xb][yb]);
+                chessBoardSquares[buttonRow][buttonColumn] = tempButton;
+                gamePanel.add(chessBoardSquares[buttonRow][buttonColumn]);
             }
         }
 
-        for(int xl = 0; xl < chessBoardSquares.length+1; xl++){
+        for(int lastRow = 0; lastRow < chessBoardSquares.length+1; lastRow++){
             String letter = "";
-            switch (xl) {
+            switch (lastRow) {
                 case 0 -> letter = "";
                 case 1 -> letter = "A";
                 case 2 -> letter = "B";
@@ -89,6 +94,7 @@ public class GameBoardUI implements ActionListener {
             gamePanel.add(new JLabel(letter,SwingConstants.CENTER));
         }
         gameFrame.add(gamePanel,BorderLayout.CENTER);
+
         gameFrame.setVisible(true);
     }
 
@@ -115,39 +121,40 @@ public class GameBoardUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Location tempLocation = null;
+        if(game.getCurrentModes()!=2) {
+            Location tempLocation = null;
 
-
-        for (int x = 0; x < chessBoardSquares.length; x++) {
-            for (int y = 0; y < chessBoardSquares[x].length; y++) {
-                if (e.getSource() == chessBoardSquares[x][y]) {
-                    if (!pieceSelected) {
-                        selected = chessBoardSquares[x][y];
+            for (int x = 0; x < chessBoardSquares.length; x++) {
+                for (int y = 0; y < chessBoardSquares[x].length; y++) {
+                    if (e.getSource() == chessBoardSquares[x][y]) {
+                        if (!pieceSelected) {
+                            selected = chessBoardSquares[x][y];
+                        }
+                        tempLocation = new Location(x, y, gameBoard.getLocation(x, y).getPiece());
                     }
-                    tempLocation = new Location(x, y, gameBoard.getLocation(x, y).getPiece());
                 }
             }
-        }
 
-        if(tempLocation!=null) {
-            if (!pieceSelected) {
-                if(tempLocation.getPiece()!=null) {
-                    if (tempLocation.getPiece().isWhite() == game.getCurrentTurn().isWhiteSide()) {
-                        pieceSelected = true;
-                        start = tempLocation;
-                        selected.setBackground(Color.GREEN);
+            if (tempLocation != null) {
+                if (!pieceSelected) {
+                    if (tempLocation.getPiece() != null) {
+                        if (tempLocation.getPiece().isWhite() == game.getCurrentTurn().isWhiteSide()) {
+                            pieceSelected = true;
+                            start = tempLocation;
+                            selected.setBackground(Color.GREEN);
+                        }
                     }
-                }
-            } else {
-                pieceSelected = false;
-                end = tempLocation;
-                setColor(start.getX(), start.getY(), selected);
+                } else {
+                    pieceSelected = false;
+                    end = tempLocation;
+                    setColor(start.getX(), start.getY(), selected);
 
-                //TODO selecting same piece twice
-                game.playMove(new Move(game.getCurrentTurn(), start, end));
-                //TODO not most efficient
-                playersTurnLabel.setText("Its " + game.getCurrentTurn().getName() + "'s turn");
-                setBoardPieces(gameBoard.getLocations());
+                    //TODO selecting same piece twice
+                    game.playMove(new Move(game.getCurrentTurn(), start, end));
+                    //TODO not most efficient
+                    playersTurnLabel.setText("Its " + game.getCurrentTurn().getName() + "'s turn");
+                    setBoardPieces(gameBoard.getLocations());
+                }
             }
         }
 

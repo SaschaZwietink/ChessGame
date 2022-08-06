@@ -15,7 +15,11 @@ public class PawnPromotion implements ActionListener {
     private final int CHOOSE_QUEEN = 0,CHOOSE_BISHOP = 1,CHOOSE_ROOK = 2,CHOOSE_KNIGHT = 3;
     private int finalChoose = -1;
 
-    public PawnPromotion(){
+    private final Game game;
+
+
+    public PawnPromotion(Game game){
+        this.game = game;
         images = new GameImages();
         images.initializeImages();
 
@@ -65,10 +69,6 @@ public class PawnPromotion implements ActionListener {
         promotionFrame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new PawnPromotion();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -82,6 +82,7 @@ public class PawnPromotion implements ActionListener {
             finalChoose = CHOOSE_KNIGHT;
         }
 
+        game.setFinalPromPiece(finalChoose,!game.getCurrentTurn().isWhiteSide());
         System.out.println(finalChoose);
         promotionFrame.dispose();
     }

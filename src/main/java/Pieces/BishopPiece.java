@@ -11,6 +11,7 @@ public class BishopPiece extends Piece{
     //TODO killing
     @Override
     public boolean canMove(GameBoard gameBoard, Location start, Location end) {
+
         boolean canBeAKill = false;
         if(end.getPiece() != null) {
             if (end.getPiece().isWhite() == this.isWhite()) {
@@ -24,6 +25,10 @@ public class BishopPiece extends Piece{
         int x = Math.abs(end.getX()-start.getX());
         int y = Math.abs(end.getY()-start.getY());
 
+        //Extra for checking check
+        if(x/y!=1){
+            return false;
+        }
         if(x == 1){
             return x/y == 1;
         }
@@ -31,6 +36,7 @@ public class BishopPiece extends Piece{
         int xe = end.getX()-(end.getX()-start.getX())/x;
         int ye = end.getY()-(end.getY()-start.getY())/y;
 
+        if(xe==0){return true;};
         Location tempEnd = new Location(xe,ye,gameBoard.getLocation(xe,ye).getPiece());
         return canMove(gameBoard,start,tempEnd);
     }

@@ -1,6 +1,9 @@
 package main.java.Players;
 
+import main.java.GameLogic.Location;
+
 public abstract class Player{
+    private Location kingLocation = new Location(-1,-1,null);
     private boolean whiteSide;
     private boolean human;
     private String name;
@@ -25,4 +28,9 @@ public abstract class Player{
         return name;
     }
 
+    public Location getKingLocation(){return kingLocation;};
+
+    public void setKingLocation(Location kingLocation) {
+        this.kingLocation = kingLocation;
+    }
 }

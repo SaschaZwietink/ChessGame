@@ -58,9 +58,12 @@ public class GameBoard {
 
         for(int vertical = 2; vertical< maxFieldsLength-2; vertical++){
             for (int horizontal = 0; horizontal< maxFieldsWidth; horizontal++){
-                locations[vertical][horizontal] = new Location(vertical,horizontal,null);
+                //?
+                locations[vertical][horizontal] = new Location(horizontal,vertical,null);
             }
         }
+
+
     }
 
     public Location getLocation(int x, int y){

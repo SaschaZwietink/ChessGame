@@ -7,15 +7,18 @@ import main.java.Players.Player;
 public class GameLaunch {
     private Game game;
     private GameBoard gameBoard;
+
+    private GameBoardUI gameBoardUI;
     //TODO Simulate method
 
     public void launch(){
         gameBoard = new GameBoard();
+
         Human p1 = new Human(true,"White");
         Human p2 = new Human(false,"Black");
-
-        game = new Game(p1,p2,gameBoard);
-
+        game = new Game(p1,p2,this);
+        gameBoardUI = new GameBoardUI(this);
+        game.setGameBoardUI();
 
         System.out.println("Start of game");
         gameBoard.initializeBoard();
@@ -26,7 +29,7 @@ public class GameLaunch {
 //        simulateTurn(7,0,5,0,p1);
 //        simulateTurn(0,1,2,2,p2);
 
-        GameBoardUI gameBoardUI = new GameBoardUI(gameBoard,game);
+
         gameBoardUI.setBoardPieces(gameBoard.getLocations());
     }
 
@@ -49,4 +52,15 @@ public class GameLaunch {
         gameBoard.printBoard();
     }
 
+    public GameBoardUI getGameBoardUI() {
+        return gameBoardUI;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
+    }
 }

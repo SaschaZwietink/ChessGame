@@ -25,19 +25,19 @@ public class PawnPiece extends Piece{
         int x = Math.abs(dx);
         int y = Math.abs(end.getY()-start.getY());
 
-        //No horizontal movement
+        //No going sideways
         if(x == 0){return false;}
 
-        //No backwards
+        //No going backwards
         if((!(dx/x == -1)&&this.isWhite())||(!(dx/x == 1)&&!this.isWhite())){
             return false;
         }
 
         //Killing a piece
         if(y != 0) {
-            if (emptyLocation == 2 && x / y == 1) {
+            //if diagonal square is occupied by opponent
+            if (emptyLocation == 2 && x/y == 1) {
                 firstMove = false;
-                end.getPiece().setAlive(false);
                 if(end.getX() == 7 || end.getX() == 0){promotion = true;}
                 return true;
             }
