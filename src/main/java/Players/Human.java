@@ -10,16 +10,9 @@ public class Human extends Player{
         this.human = true;
         this.name = name;
     }
-
     public String getName() {
         return name;
     }
-
-    @Override
-    public boolean isHuman() {
-        return human;
-    }
-
     @Override
     public boolean isWhiteSide() {
         return whiteSide;

@@ -23,11 +23,18 @@ public class RookPiece extends Piece{
 
         if(x == 1){
             return y == 0;
+        }else if(y == 1){
+            return x == 0;
         }
 
-        int xe = end.getX()-(end.getX()-start.getX())/x;
-
-        Location tempEnd = new Location(xe,end.getY(),null);
+        int xe = end.getX(), ye = end.getY();
+        if(x > 0){
+            xe = end.getX()-(end.getX()-start.getX())/x;
+        }
+        if (y > 0) {
+            ye = end.getY()-(end.getY()-start.getY())/y;
+        }
+        Location tempEnd = new Location(xe,ye,null);
         return canMove(gameBoard,start,tempEnd);
     }
 

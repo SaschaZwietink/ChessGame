@@ -17,27 +17,28 @@ public class QueenPiece extends Piece {
     @Override
     public boolean canMove(GameBoard gameBoard, Location start, Location end) {
 
-        if(end.getPiece() != null) {
-            if (end.getPiece().isWhite() == this.isWhite()) {
-                return false;
-            }//TODO kill a piece
-        }
-
         int x = Math.abs(end.getX()-start.getX());
         int y = Math.abs(end.getY()-start.getY());
-
-
-        if((x/y!=1)||(y==0 && x!=0)||(x==0)){
-            return false;
-        }
-        if(x == 1){
-            return x/y == 1;
+        if(end.getPiece() != null) {
+            //Stops the piece from moving further then a same color piece
+            if (end.getPiece().isWhite() == this.isWhite()) {
+                return false;
+            }
         }
 
-        int xe = end.getX()-(end.getX()-start.getX())/x;
-        int ye = end.getY()-(end.getY()-start.getY())/y;
 
-//        if(xe==0){return true;};
+
+        if(x == 1 || y == 1){
+            return x + y == 1 || x / y == 1;
+        }
+
+        int xe = end.getX(), ye = end.getY();
+        if(x > 0){
+            xe = end.getX()-(end.getX()-start.getX())/x;
+        }
+        if (y > 0) {
+            ye = end.getY()-(end.getY()-start.getY())/y;
+        }
         Location tempEnd = new Location(xe,ye,gameBoard.getLocation(xe,ye).getPiece());
         return canMove(gameBoard,start,tempEnd);
     }

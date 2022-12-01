@@ -15,11 +15,9 @@ public class PawnPiece extends Piece{
     //TODO add En Passant
     @Override
     public boolean canMove(GameBoard gameBoard, Location start, Location end) {
-
-        int emptyLocation = super.locationEmpty(end);
-
-        if(emptyLocation == 1){return false;}
-
+        if(end.getPiece().isWhite() == this.isWhite()){
+            return false;
+        }
         int dx = end.getX()-start.getX();
 
         int x = Math.abs(dx);
@@ -36,7 +34,7 @@ public class PawnPiece extends Piece{
         //Killing a piece
         if(y != 0) {
             //if diagonal square is occupied by opponent
-            if (emptyLocation == 2 && x/y == 1) {
+            if (end.getPiece().isWhite()!=this.isWhite() && x/y == 1) {
                 firstMove = false;
                 if(end.getX() == 7 || end.getX() == 0){promotion = true;}
                 return true;

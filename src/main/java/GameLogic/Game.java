@@ -12,10 +12,13 @@ import java.util.List;
 
 /**
  * List of things that don't work correctly/need to be done
- * - Rook sideways movement
- * - Queen diagonal
+ * - Rook sideways movement -> Done
+ * - Queen horizontal/vertical -> Done
+ * - Pieces killing opponents
  * - Check beginning is in place, see printouts
- * - The printout need to be sorted out
+ *      works only when moving piece places check
+ *      and doesn't look through opponent
+ * - The printout need to be sorted out -> Done
  * - Interconnected classes, mostly in launch
  * - Launch menu
  * - To big of methods
@@ -34,7 +37,6 @@ public class Game {
     private final List<Move> movesPlayed;
     private Location finalPromLocation = null;
     private PawnPromotion pawnPromotion;
-
     private final GameLaunch gameLaunch;
 
     public Game(Player p1, Player p2, GameLaunch gameLaunch) {
@@ -46,6 +48,7 @@ public class Game {
         players.add(p2);
 
         currentTurn = players.get(0);
+
         //players.get(0).setKingLocation(new Location(4,7,new KingPiece(true)));
         //players.get(1).setKingLocation(gameBoard.getLocation(4,0));
     }
@@ -57,8 +60,8 @@ public class Game {
     public void playMove(Move newMove){
         if(movePossible(newMove)) {
             Piece pieceMoving = newMove.getStart().getPiece();
-            int startX = newMove.getStart().getX();
-            int startY = newMove.getStart().getY();
+            int startX = newMove.getStart().getY();
+            int startY = newMove.getStart().getX();
             int endX = newMove.getEnd().getX();
             int endY = newMove.getEnd().getY();
 
@@ -85,10 +88,7 @@ public class Game {
 
 
             movesPlayed.add(newMove);
-            System.out.println("(" + newMove.getEnd().getX()+", " + newMove.getEnd().getY() + ") -> " + newMove.getEnd().getPiece().getName());
             System.out.println(isChecked(newMove.getEnd()) + " Check!!!!!");
-
-            System.out.println(gameBoard.getLocation(newMove.getEnd().getX(),newMove.getEnd().getY()).getPiece().getName());
             nextTurn();
         }else{
             System.out.println("Can not do this move");
@@ -149,13 +149,10 @@ public class Game {
         gameBoard.getLocation(finalPromLocation.getX(), finalPromLocation.getY()).setPiece(finalPromLocation.getPiece());
         System.out.println(gameBoard.getLocation(finalPromLocation.getX(), finalPromLocation.getY()).getPiece().getName());
     }
-
     public int getCurrentModes() {
         return currentModes;
     }
-
     public void setGameBoardUI(){
         this.gameBoardUI = gameLaunch.getGameBoardUI();
     }
-
 }

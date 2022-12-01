@@ -4,7 +4,6 @@ import main.java.GameLogic.GameBoard;
 import main.java.GameLogic.Location;
 
 public class KnightPiece extends Piece {
-
     public KnightPiece(boolean isWhite) {
         super(isWhite);
     }
