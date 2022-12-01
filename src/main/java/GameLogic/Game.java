@@ -9,6 +9,20 @@ import java.util.List;
 /**
  * Main game class that handles move's and turns
  */
+
+/**
+ * List of things that don't work correctly/need to be done
+ * - Rook sideways movement
+ * - Queen diagonal
+ * - Check beginning is in place, see printouts
+ * - The printout need to be sorted out
+ * - Interconnected classes, mostly in launch
+ * - Launch menu
+ * - To big of methods
+ * - Duplicate methods in most pieces, could be changed to abstract class
+ * - Base for the bot
+ * - Colored names on the pc
+ */
 public class Game {
     private int currentModes;
 
@@ -26,7 +40,6 @@ public class Game {
     public Game(Player p1, Player p2, GameLaunch gameLaunch) {
         this.gameLaunch = gameLaunch;
         this.gameBoard = gameLaunch.getGameBoard();
-        this.gameBoardUI = gameLaunch.getGameBoardUI();
         movesPlayed = new LinkedList<>();
         players = new LinkedList<>();
         players.add(p1);

@@ -36,7 +36,7 @@ public class BishopPiece extends Piece{
         int xe = end.getX()-(end.getX()-start.getX())/x;
         int ye = end.getY()-(end.getY()-start.getY())/y;
 
-        if(xe==0){return true;};
+//        if(xe==0){return true;};
         Location tempEnd = new Location(xe,ye,gameBoard.getLocation(xe,ye).getPiece());
         return canMove(gameBoard,start,tempEnd);
     }

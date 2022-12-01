@@ -62,8 +62,6 @@ public class GameBoard {
                 locations[vertical][horizontal] = new Location(horizontal,vertical,null);
             }
         }
-
-
     }
 
     public Location getLocation(int x, int y){

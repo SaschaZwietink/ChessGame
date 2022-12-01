@@ -14,8 +14,8 @@ public class GameLaunch {
     public void launch(){
         gameBoard = new GameBoard();
 
-        Human p1 = new Human(true,"White");
-        Human p2 = new Human(false,"Black");
+        Player p1 = new Human(true,"White");
+        Player p2 = new Human(false,"Black");
         game = new Game(p1,p2,this);
         gameBoardUI = new GameBoardUI(this);
         game.setGameBoardUI();
