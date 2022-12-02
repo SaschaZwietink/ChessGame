@@ -15,6 +15,11 @@ public class PawnPiece extends Piece{
     //TODO add En Passant
     @Override
     public boolean canMove(GameBoard gameBoard, Location start, Location end) {
+        if(end.getPiece()!=null){
+            if(end.getPiece().isWhite() == this.isWhite()){
+                return false;
+            }
+        }
         if(end.getPiece().isWhite() == this.isWhite()){
             return false;
         }
